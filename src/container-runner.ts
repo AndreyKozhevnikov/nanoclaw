@@ -256,16 +256,18 @@ export async function runContainerAgent(
     let stdoutTruncated = false;
     let stderrTruncated = false;
 
-    container.stdin.write(JSON.stringify({
-      ...input,
-      secrets: readEnvFile([
-        'AZURE_OPENAI_API_KEY',
-        'AZURE_OPENAI_ENDPOINT',
-        'AZURE_OPENAI_API_VERSION',
-        'AZURE_OPENAI_TOKEN',
-        'AZURE_OPENAI_DEPLOYMENT',
-      ]),
-    }));
+    container.stdin.write(
+      JSON.stringify({
+        ...input,
+        secrets: readEnvFile([
+          'AZURE_OPENAI_API_KEY',
+          'AZURE_OPENAI_ENDPOINT',
+          'AZURE_OPENAI_API_VERSION',
+          'AZURE_OPENAI_TOKEN',
+          'AZURE_OPENAI_DEPLOYMENT',
+        ]),
+      }),
+    );
     container.stdin.end();
 
     // Streaming output: parse OUTPUT_START/END marker pairs as they arrive

@@ -2,6 +2,7 @@ import fs from 'fs';
 
 const GLOBAL_SYSTEM_MD = '/workspace/global/SYSTEM.md';
 const PROJECT_GLOBAL_SYSTEM_MD = '/workspace/project/groups/global/SYSTEM.md';
+const GROUP_SYSTEM_MD = '/workspace/group/SYSTEM.md';
 const EXTRA_BASE = '/workspace/extra';
 const CONFIG_SYSTEM_MD = '/workspace/config/SYSTEM.md';
 
@@ -18,6 +19,10 @@ export function loadSystemPrompt(isMain: boolean): string {
       parts.push(fs.readFileSync(globalPath, 'utf-8'));
       break;
     }
+  }
+
+  if (fs.existsSync(GROUP_SYSTEM_MD)) {
+    parts.push(fs.readFileSync(GROUP_SYSTEM_MD, 'utf-8'));
   }
 
   if (fs.existsSync(EXTRA_BASE)) {
