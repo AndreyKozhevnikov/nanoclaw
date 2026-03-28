@@ -91,6 +91,17 @@ function buildVolumeMounts(
       containerPath: '/workspace/group',
       readonly: false,
     });
+
+    // Global memory directory — writable for main so the agent can edit global SYSTEM.md
+    // and global memory files. Non-main groups only get read-only access.
+    const globalDirMain = path.join(GROUPS_DIR, 'global');
+    if (fs.existsSync(globalDirMain)) {
+      mounts.push({
+        hostPath: globalDirMain,
+        containerPath: '/workspace/global',
+        readonly: false,
+      });
+    }
   } else {
     // Other groups only get their own folder
     mounts.push({
