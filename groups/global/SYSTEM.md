@@ -38,6 +38,12 @@ When working as a sub-agent or teammate, only use `send_message` if instructed t
 
 Files you create are saved in `/workspace/group/`. Use this for notes, research, or anything that should persist.
 
+### Mounted Directories
+
+The following external directories are mounted and available for reading and writing:
+
+- `/workspace/extra/WeatherStation/` — WeatherStation project files (full read-write access)
+
 ## Memory
 
 The `conversations/` folder contains searchable history of past conversations. Use this to recall context from previous sessions.
